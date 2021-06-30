@@ -17,6 +17,14 @@ export class HeroService {
     return heroes;
   }
 
+  getHero(id: number): Observable<Hero> {
+    // 지금은 히어로의 `id` 프로퍼티가 항상 존재한다고 간주합니다.
+    // 에러를 처리하는 방법은 다음 튜토리얼에 대해 알아봅니다.
+    const hero = HEROES.find(h => h.id === id)!;
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(hero);
+  }
+
   constructor(private messageService:MessageService) { } 
   // heroService 가 생성될 때 MessageService의 싱글턴 인스턴스를 의존성으로 주입
 }
